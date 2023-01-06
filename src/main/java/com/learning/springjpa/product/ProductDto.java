@@ -2,24 +2,22 @@ package com.learning.springjpa.product;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.learning.springjpa.order.Order;
+import com.learning.springjpa.order.OrderDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import lombok.experimental.Accessors;
 
 import java.util.Set;
 
-@Entity
 @Setter
 @Getter
-@Accessors(chain = true)
-@ToString
-public class Product {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class ProductDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
 
     private String name;
@@ -30,9 +28,6 @@ public class Product {
 
     private Integer inStock;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "products")
-    @ToString.Exclude
-    @JsonIgnore
-    private Set<Order> orders;
+    private Set<OrderDto> orders;
 
 }
