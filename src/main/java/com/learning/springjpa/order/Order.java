@@ -72,7 +72,7 @@ public class Order {
     }
 
     public Order setProducts(List<Product> products) {
-        this.products = new HashSet<>();
+        this.products = new HashSet<>(products);
         return this;
 
     }
